@@ -3,7 +3,6 @@ const addMeasurementPanel = document.querySelector('.add-new-measurement-modal')
 const summarySection = document.querySelector('.summary')
 const summaryText = document.querySelector('.summary__text')
 
-
 const timeInput = document.querySelector('.data__time--input');
 const massInput = document.querySelector('.data__mass--input');
 const startTemperatureInput = document.querySelector('.data__start-temperature--input');
@@ -28,10 +27,8 @@ let minutes = 0;
 let seconds = 0;
 
 
-
 let measurements = [];
 let ID = 1;
-
 
 const showPanel = () => {
     addMeasurementPanel.classList.add('add-new-measurement-modal--active');
@@ -39,14 +36,11 @@ const showPanel = () => {
     summarySection.style.display = 'none';
     clearStuff();
     timeInfo.style.visibility = 'hidden';
-
 }
 
 const closePanel = () => {
     addMeasurementPanel.classList.remove('add-new-measurement-modal--active');
-
 }
-
 
 const checkForm = () => {
     if (parseFloat(timeInput.value) <= 0) {
@@ -103,8 +97,6 @@ const createNewMeasurement = () => {
     closePanel();
     ID++;
     clearInputs();
-
-
 }
 
 const deleteMeasurement = id => {
@@ -116,7 +108,6 @@ const deleteMeasurement = id => {
     summarySection.style.display = 'none';
 }
 
-
 const deleteAllMeasurements = () => {
     measurementsList.innerHTML = '';
     measurements = [];
@@ -124,7 +115,6 @@ const deleteAllMeasurements = () => {
     console.log('dziala');
     powerInput.value = '';
     summarySection.style.display = 'none';
-
 }
 
 // const refreshID = () => {
@@ -155,9 +145,6 @@ const summary = () => {
     const efficienciesArr = [];
     const powersArr = [];
 
-
-
-
     measurements.forEach(el => massesArr.push(el.mass))
     measurements.forEach(el => efficienciesArr.push(el.efficiency))
     measurements.forEach(el => powersArr.push(el.power))
@@ -167,22 +154,17 @@ const summary = () => {
         sumMass += massesArr[i];
     }
 
-
     let sumEff = 0
     for (let i = 0; i < efficienciesArr.length; i++) {
         sumEff += efficienciesArr[i];
     }
     const averageEff = sumEff / efficienciesArr.length;
 
-
     let sumPower = 0;
     for (let i = 0; i < powersArr.length; i++) {
         sumPower += powersArr[i];
     }
     const averagePower = sumPower / efficienciesArr.length;
-
-
-
 
     summaryText.innerHTML = `
     C z e ś ć!
@@ -208,10 +190,7 @@ const summary = () => {
 
     var ctx = document.getElementById('efficiencyChart').getContext('2d');
     var chart = new Chart(ctx, {
-        // The type of chart we want to create
         type: 'line',
-
-        // The data for our dataset
         data: {
             labels: massesArr,
             datasets: [{
@@ -222,8 +201,6 @@ const summary = () => {
                 showLine: false
             }]
         },
-
-        // Configuration options go here
         options: {
             responsive: true,
             layout: {
@@ -256,7 +233,6 @@ const summary = () => {
     chart.update();
 }
 
-
 const handleStart = () => {
     clearInterval(countTime);
 
@@ -284,7 +260,6 @@ const handleStop = () => {
         timeInfo.style.visibility = 'visible';
         timeInput.value = timeToformula;
     }
-
     clearStuff();
 }
 
@@ -299,12 +274,7 @@ const handleReset = () => {
     timeInfo.style.visibility = 'hidden';
     timeInput.value = '';
     clearStuff();
-
 }
-
-
-
-
 
 
 
